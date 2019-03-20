@@ -31,7 +31,7 @@ CREATE TABLE payments (
   date VARCHAR NOT NULL,
   customer_id INT REFERENCES customers(id) NOT NULL,
   order_id INT REFERENCES orders(id) NOT NULL,
-  billingAddress VARCHAR NOT NULL,
+  billingAddress VARCHAR NOT NULL, 
   shippingAddress VARCHAR NOT NULL,
   paymentType VARCHAR NOT NULL
 );
