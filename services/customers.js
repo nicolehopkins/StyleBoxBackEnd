@@ -5,7 +5,7 @@ customerService.create = (id, email, password, token) => {
     const sql = `
     INSERT INTO customers (id, email, password, token) 
     VALUES ($[id], $[email], $[password], $[token])`;
-    return db.any(sql, {id, email, password, token});
+    return db.one(sql, {id, email, password, token});
 }
 
 customerService.read = (id) => {

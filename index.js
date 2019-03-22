@@ -3,11 +3,14 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 3001;
 
+const customerRouter = require('./routes/customers')
+
 //  Middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 //  Routes
+app.use('/customer', customerRouter);
 
 
 
