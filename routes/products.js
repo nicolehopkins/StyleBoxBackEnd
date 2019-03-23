@@ -4,7 +4,7 @@ const productService = require('../services/products');
 
 // CREATE
 productRouter.post('/', (req, res, next) => {
-    const {id, name, description, price, stock} = req.params;
+    const {id, name, description, price, stock} = req.body;
 
     productService.create(id, name, description, price, stock)
         .then(data => {

@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS styleBox;
-CREATE DATABASE styleBox;
+DROP DATABASE IF EXISTS stylebox;
+CREATE DATABASE stylebox;
 
 \c styleBox;
 
@@ -18,7 +18,7 @@ CREATE TABLE products (
   name VARCHAR NOT NULL,
   description VARCHAR NOT NULL,
   price VARCHAR NOT NULL,
-  quantity VARCHAR NOT NULL
+  stock INT NOT NULL
 );
 
 CREATE TABLE orders (
@@ -36,3 +36,4 @@ CREATE TABLE payments (
   order_id INT REFERENCES orders(id) NOT NULL,
   isPaid BOOLEAN NOT NULL
 );
+
