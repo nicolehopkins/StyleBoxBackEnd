@@ -1,11 +1,11 @@
 const {db} = require('./dbConnect');
 const orderService = {};
 
-orderService.create = (id, email, password, token) => {
+orderService.create = (id, customer_id, product_id, dateOrdered, dateShipped) => {
     const sql = `
-    INSERT INTO orders (id, email, password, token) 
-    VALUES ($[id], $[email], $[password], $[token])`;
-    return db.one(sql, {id, email, password, token});
+    INSERT INTO orders (id, customer_id, product_id, dateOrdered, dateShipped) 
+    VALUES ($[id], $[customer_id], $[product_id], $[dateOrdered], $[dateShipped])`;
+    return db.one(sql, {id, customer_id, product_id, dateOrdered, dateShipped});
 }
 
 orderService.read = (id) => {
