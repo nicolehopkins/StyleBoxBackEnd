@@ -12,8 +12,9 @@ customerService.read = (id) => {
     const sql = `
     SELECT customers.*, customers.id AS customer_id 
     FROM customers
-    JOIN orders 
-        ON customers.id = orders.customer_id
+    JOIN orders, payments 
+        ON customers.id = orders.customer_id,
+        customers.id = payments.customer_id
     WHERE customers.id = $[id]`;
     return db.one(sql, {id});
 }
