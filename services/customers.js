@@ -1,11 +1,11 @@
 const {db} = require('./dbConnect');
 const customerService = {};
 
-customerService.create = (id, email, password, token) => {
+customerService.create = (id, email, password, token, shippingAddress, billingAddress, creditCardInfo) => {
     const sql = `
-    INSERT INTO customers (id, email, password, token) 
-    VALUES ($[id], $[email], $[password], $[token])`;
-    return db.one(sql, {id, email, password, token});
+    INSERT INTO customers (id, email, password, token, shippingAddress, billingAddress, creditCardInfo) 
+    VALUES ($[id], $[email], $[password], $[token], $[shippingAddress, $[billingAddress], $[creditCardInfo])`;
+    return db.one(sql, {id, email, password, token, shippingAddress, billingAddress, creditCardInfo});
 }
 
 customerService.read = (id) => {
@@ -19,16 +19,19 @@ customerService.read = (id) => {
     return db.one(sql, {id});
 }
 
-customerService.update = (id, email, password, token) => {
+customerService.update = (id, email, password, token, shippingAddress, billingAddress, creditCardInfo) => {
     const sql = `
     UPDATE customers
     SET
         email=$[email],
         password=$[password],
-        token=$[token]
+        token=$[token],
+        shippingAddress=$[shippingAddress],
+        billingAddress=$[billingAddress],
+        creditCardInfo=$[creditCardInfo]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, email, password, token});
+    return db.one(sql, {id, email, password, token, shippingAddress, billingAddress, creditCardInfo});
 }
 
 customerService.delete = (id) => {
