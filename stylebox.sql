@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS stylebox;
 CREATE DATABASE stylebox;
 
-\c styleBox;
+\c styleBox
 
 CREATE TABLE customers (
   id SERIAL PRIMARY KEY,
