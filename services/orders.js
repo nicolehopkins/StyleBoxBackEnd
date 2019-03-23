@@ -12,22 +12,23 @@ orderService.read = (id) => {
     const sql = `
     SELECT orders.*, orders.id AS order_id 
     FROM orders
-    JOIN orders 
-        ON orders.id = orders.order_id
+    JOIN payments 
+        ON orders.id = payments.order_id
     WHERE orders.id = $[id]`;
     return db.one(sql, {id});
 }
 
-orderService.update = (id, email, password, token) => {
+orderService.update = (id, customer_id, product_id, dateOrdered, dateShipped) => {
     const sql = `
     UPDATE orders
     SET
-        email=$[email],
-        password=$[password],
-        token=$[token]
+        customer_id=$[customer_id],
+        product_id=$[product_id],
+        dateOrdered=$[dateOrdered],
+        dateShipped=$[dateShipped]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, email, password, token});
+    return db.one(sql, {id, customer_id, product_id, dateOrdered, dateShipped});
 }
 
 orderService.delete = (id) => {

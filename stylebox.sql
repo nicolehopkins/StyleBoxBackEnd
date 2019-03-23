@@ -7,7 +7,10 @@ CREATE TABLE customers (
   id SERIAL PRIMARY KEY,
   email VARCHAR UNIQUE NOT NULL,
   password VARCHAR UNIQUE NOT NULL,
-  token VARCHAR UNIQUE NOT NULL
+  token VARCHAR UNIQUE NOT NULL,
+  shippingAddress VARCHAR,
+  billingAddress VARCHAR,
+  creditCardNumber VARCHAR
 );
 
 CREATE TABLE products (
