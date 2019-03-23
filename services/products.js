@@ -1,33 +1,36 @@
 const {db} = require('./dbConnect');
 const productService = {};
 
-productService.create = (id, customer_id, product_id, dateproducted, dateShipped) => {
+productService.create = (id, name, description, price, stock) => {
     const sql = `
-    INSERT INTO products (id, customer_id, product_id, dateproducted, dateShipped) 
-    VALUES ($[id], $[customer_id], $[product_id], $[dateproducted], $[dateShipped])`;
-    return db.one(sql, {id, customer_id, product_id, dateproducted, dateShipped});
+    INSERT INTO products (id, name, description, price, stock) 
+    VALUES ($[id], $[customer_id], $[product_id], $[description], $[price], $[stock])`;
+    return db.one(sql, {id, name, description, price, stock});
 }
 
 productService.read = (id) => {
     const sql = `
     SELECT products.*, products.id AS product_id 
     FROM products
-    JOIN products 
-        ON products.id = products.product_id
+    JOIN orders 
+        ON products.id = orders.product_id
     WHERE products.id = $[id]`;
     return db.one(sql, {id});
 }
 
-productService.update = (id, email, password, token) => {
+productService.update = (id, name, description, price, stock) => {
     const sql = `
     UPDATE products
     SET
         email=$[email],
         password=$[password],
-        token=$[token]
+        token=$[token],
+        description=$[description],
+        price=$[price],
+        stock=$[stock]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, email, password, token});
+    return db.one(sql, {id, name, description, price, stock});
 }
 
 productService.delete = (id) => {
