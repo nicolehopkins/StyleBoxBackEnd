@@ -3,7 +3,7 @@ const customerRouter = express.Router();
 const customerService = require('../services/customers');
 
 // CREATE
-customerRouter.post('/', (req, res, next) => {
+customerRouter.post('/customer', (req, res, next) => {
     const {id, email, password, token} = req.body;
 
     customerService.create(id, email, password, token)
