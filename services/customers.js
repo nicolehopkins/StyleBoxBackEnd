@@ -1,7 +1,7 @@
 const {db} = require('./dbConnect');
 const customerService = {};
 
-customerService.create = (email, password, token, shippingAddress = null, billingAddress = null, creditCardInfo = null) => {
+customerService.create = (email, password, token, shippingAddress=null, billingAddress=null, creditCardInfo=null) => {
     const sql = `
     INSERT INTO customers (email, password, token, shippingAddress, billingAddress, creditCardInfo) 
     VALUES ($[email], $[password], $[token], $[shippingAddress, $[billingAddress], $[creditCardInfo])
