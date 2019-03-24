@@ -28,30 +28,30 @@ customerRouter.get('/:id', (req, res, next) => {
         })
 })
 
-// UPDATE
-customerRouter.put('/:id', (req, res, next) => {
-    const {id} = req.params;
+// // UPDATE
+// customerRouter.put('/:id', (req, res, next) => {
+//     const {id} = req.params;
 
-    customerService.update(id, email, password, token)
-        .then(data => {
-            res.json({success: `Updated customer with email ${email} with ID ${id}`});
-        })
-        .catch(err => {
-            next(err);
-        })
-})
+//     customerService.update(id, email, password, token)
+//         .then(data => {
+//             res.json({success: `Updated customer with email ${email} with ID ${id}`});
+//         })
+//         .catch(err => {
+//             next(err);
+//         })
+// })
 
-// DELETE
-customerRouter.get('/:id', (req, res, next) => {
-    const {id} = req.params;
+// // DELETE
+// customerRouter.get('/:id', (req, res, next) => {
+//     const {id} = req.params;
 
-    customerService.delete(id)
-        .then(data => {
-            res.json({success: `Deleted customer with email ${email} with ID ${id}`});
-        })
-        .catch(err => {
-            next(err);
-        })
-})
+//     customerService.delete(id)
+//         .then(data => {
+//             res.json({success: `Deleted customer with email ${email} with ID ${id}`});
+//         })
+//         .catch(err => {
+//             next(err);
+//         })
+// })
 
 module.exports = customerRouter;
