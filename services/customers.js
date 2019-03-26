@@ -1,43 +1,41 @@
 const {db} = require('./dbConnect');
 const customerService = {};
 
-customerService.create = (email, password, token, shippingAddress=null, billingAddress=null, creditCardInfo=null) => {
+customerService.create = (email, password, token, shipping_address=null, billing_address=null, credit_card_number=null) => {
     const sql = `
-    INSERT INTO customers (email, password, token, shippingAddress, billingAddress, creditCardInfo) 
-    VALUES ($[email], $[password], $[token], $[shippingAddress, $[billingAddress], $[creditCardInfo])
+    INSERT INTO customers (email, password, token, shipping_address, billing_address, credit_card_number) 
+    VALUES ($[email], $[password], $[token], $[shipping_address, $[billing_address], $[credit_card_number])
     RETURNING id`;
-    return db.one(sql, {email, password, token, shippingAddress, billingAddress, creditCardInfo});
+    return db.one(sql, {email, password, token, shipping_address, billing_address, credit_card_number});
 }
 
 customerService.read = (id) => {
     const sql = `
-    SELECT customers.*, customers.id AS customer_id 
+    SELECT * 
     FROM customers
-        JOIN orders ON customers.id = orders.customer_id
-        JOIN payments ON customers.id = payments.customer_id
     WHERE id = $[id]`;
     return db.one(sql, {id});
 }
 
-// customerService.update = (id, email, password, token, shippingAddress, billingAddress, creditCardInfo) => {
-//     const sql = `
-//     UPDATE customers
-//     SET
-//         email=$[email],
-//         password=$[password],
-//         token=$[token],
-//         shippingAddress=$[shippingAddress],
-//         billingAddress=$[billingAddress],
-//         creditCardInfo=$[creditCardInfo]
-//     WHERE
-//         id=$[id]`;
-//     return db.one(sql, {id, email, password, token, shippingAddress, billingAddress, creditCardInfo});
-// }
+customerService.update = (id, email, password, token, shipping_address, billing_address, credit_card_number) => {
+    const sql = `
+    UPDATE customers
+    SET
+        email=$[email],
+        password=$[password],
+        token=$[token],
+        shipping_address=$[shipping_address],
+        billing_address=$[billing_address],
+        credit_card_number=$[credit_card_number]
+    WHERE
+        id=$[id]`;
+    return db.one(sql, {id, email, password, token, shipping_address, billing_address, credit_card_number});
+}
 
-// customerService.delete = (id) => {
-//     const sql = `
-//     DELETE from customers WHERE id=$[id]`;
-//     return db.none(sql, {id});
-// }
+customerService.delete = (id) => {
+    const sql = `
+    DELETE from customers WHERE id=$[id]`;
+    return db.none(sql, {id});
+}
 
 module.exports = customerService;
