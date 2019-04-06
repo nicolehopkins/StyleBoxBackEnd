@@ -10,11 +10,9 @@ productService.create = (id, name, description, price, stock) => {
 
 productService.read = (id) => {
     const sql = `
-    SELECT products.*, products.id AS product_id 
+    SELECT * 
     FROM products
-    JOIN orders 
-        ON products.id = orders.product_id
-    WHERE products.id = $[id]`;
+    WHERE id = $[id]`;
     return db.one(sql, {id});
 }
 

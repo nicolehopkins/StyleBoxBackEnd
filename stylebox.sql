@@ -17,15 +17,16 @@ CREATE TABLE products (
   "id" SERIAL PRIMARY KEY,
   "name" VARCHAR NOT NULL,
   "description" VARCHAR NOT NULL,
-  "price" DECIMAL(10,2) NOT NULL,
-  "stock" INT NOT NULL
+  "price" MONEY NOT NULL,
+  "stock" INT NOT NULL,
+  "image" VARCHAR NOT NULL
 );
 
 CREATE TABLE orders (
   "id" SERIAL PRIMARY KEY,
   "customer_id" INT REFERENCES customers(id) NOT NULL,
   "product_id" INT REFERENCES products(id) NOT NULL,
-  "amount" DECIMAL(10,2) NOT NULL,
+  "amount" MONEY NOT NULL,
   "date_ordered" DATE NOT NULL,
   "date_shipped" DATE
 );
@@ -37,3 +38,4 @@ CREATE TABLE payments (
   "order_id" INT REFERENCES orders(id) NOT NULL,
   "paid" BOOLEAN NOT NULL
 );
+

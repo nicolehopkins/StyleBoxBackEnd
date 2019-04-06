@@ -1,32 +1,32 @@
 const {db} = require('./dbConnect');
 const paymentService = {};
 
-paymentService.create = (id, date, customer_id, order_id, isPaid) => {
+paymentService.create = (id, date, customer_id, order_id, paid) => {
     const sql = `
-    INSERT INTO payments (id, date, customer_id, order_id, isPaid) 
-    VALUES ($[id], $[date], $[customer_id], $[product_id], $[isPaid])`;
-    return db.one(sql, {id, date, customer_id, order_id, isPaid});
+    INSERT INTO payments (id, date, customer_id, order_id, paid) 
+    VALUES ($[id], $[date], $[customer_id], $[product_id], $[paid])`;
+    return db.one(sql, {id, date, customer_id, order_id, paid});
 }
 
 paymentService.read = (id) => {
     const sql = `
-    SELECT payments.*
+    SELECT *
     FROM payments
-    WHERE payments.id = $[id]`;
+    WHERE id = $[id]`;
     return db.one(sql, {id});
 }
 
-paymentService.update = (id, date, customer_id, order_id, isPaid) => {
+paymentService.update = (id, date, customer_id, order_id, paid) => {
     const sql = `
     UPDATE payments
     SET
         date=$[date],
         customer_id=$[customer_id],
         order_id=$[order_id],
-        isPaid=$[isPaid]
+        paid=$[paid]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, date, customer_id, order_id, isPaid});
+    return db.one(sql, {id, date, customer_id, order_id, paid});
 }
 
 paymentService.delete = (id) => {

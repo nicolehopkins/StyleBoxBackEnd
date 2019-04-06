@@ -1,11 +1,11 @@
 const {db} = require('./dbConnect');
 const orderService = {};
 
-orderService.create = (id, customer_id, product_id, amount, dateOrdered, dateShipped) => {
+orderService.create = (id, customer_id, product_id, amount, date_ordered, date_shipped) => {
     const sql = `
-    INSERT INTO orders (id, customer_id, product_id, amount, dateOrdered, dateShipped) 
-    VALUES ($[id], $[customer_id], $[product_id], $[amount], $[dateOrdered], $[dateShipped])`;
-    return db.one(sql, {id, customer_id, product_id, amount, dateOrdered, dateShipped});
+    INSERT INTO orders (customer_id, product_id, amount, date_ordered, date_shipped) 
+    VALUES ($[customer_id], $[product_id], $[amount], $[date_ordered], $[date_shipped])`;
+    return db.one(sql, {customer_id, product_id, amount, date_ordered, date_shipped});
 }
 
 orderService.read = (id) => {
@@ -16,18 +16,18 @@ orderService.read = (id) => {
     return db.one(sql, {id});
 }
 
-orderService.update = (id, customer_id, product_id, amount, dateOrdered, dateShipped) => {
+orderService.update = (id, customer_id, product_id, amount, date_ordered, date_shipped) => {
     const sql = `
     UPDATE orders
     SET
         customer_id=$[customer_id],
         product_id=$[product_id],
         amount=$[amount],
-        dateOrdered=$[dateOrdered],
-        dateShipped=$[dateShipped]
+        date_ordered=$[date_ordered],
+        date_shipped=$[date_shipped]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, customer_id, product_id, amount, dateOrdered, dateShipped});
+    return db.one(sql, {id, customer_id, product_id, amount, date_ordered, date_shipped});
 }
 
 orderService.delete = (id) => {

@@ -5,5 +5,5 @@ const config = {
     projectId: "style-box-2bb7a",
     storageBucket: "style-box-2bb7a.appspot.com",
     messagingSenderId: "162076225904"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
