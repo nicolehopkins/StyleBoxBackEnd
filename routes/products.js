@@ -4,19 +4,19 @@ const productService = require('../services/products');
 
 // CREATE
 productRouter.post('/', (req, res, next) => {
-    const {id, name, description, price, stock} = req.body;
+    const {name, description, price, stock, image} = req.body;
 
-    productService.create(id, name, description, price, stock)
+    productService.create(name, description, price, stock, image)
         .then(data => {
-            res.json({success: `New product with ${email} created with ID ${id}`});
+            res.json({success: `New product with created with ID ${data.id}`});
         })
         .catch(err => {
             next(err);
-        })
+        }) 
 })
 
 // GET
-productRouter.get('/products/:id', (req, res, next) => {
+productRouter.get('/:id', (req, res, next) => {
     const {id} = req.params;
 
     productService.read(id)
@@ -29,12 +29,12 @@ productRouter.get('/products/:id', (req, res, next) => {
 })
 
 // UPDATE
-productRouter.put('/products/:id', (req, res, next) => {
+productRouter.put('/:id', (req, res, next) => {
     const {id} = req.params;
 
-    productService.update(id, name, description, price, stock)
+    productService.update(id, name, description, price, stock, image)
         .then(data => {
-            res.json({success: `Updated product ${id}`});
+            res.json({success: `Updated product ${data.id}`});
         })
         .catch(err => {
             next(err);
@@ -42,12 +42,12 @@ productRouter.put('/products/:id', (req, res, next) => {
 })
 
 // DELETE
-productRouter.get('/products/:id', (req, res, next) => {
+productRouter.get('/:id', (req, res, next) => {
     const {id} = req.params;
 
     productService.delete(id)
         .then(data => {
-            res.json({success: `Deleted product ${id}`});
+            res.json({success: `Deleted product ${data.id}`});
         })
         .catch(err => {
             next(err);

@@ -1,11 +1,12 @@
 const {db} = require('./dbConnect');
 const productService = {};
 
-productService.create = (id, name, description, price, stock) => {
+productService.create = (name, description, price, stock, image) => {
     const sql = `
-    INSERT INTO products (id, name, description, price, stock) 
-    VALUES ($[id], $[customer_id], $[product_id], $[description], $[price], $[stock])`;
-    return db.one(sql, {id, name, description, price, stock});
+    INSERT INTO products (name, description, price, stock, image) 
+    VALUES ($[name], $[description], $[price], $[stock], $[image])
+    RETURNING id`;
+    return db.one(sql, {name, description, price, stock, image});
 }
 
 productService.read = (id) => {
@@ -16,7 +17,7 @@ productService.read = (id) => {
     return db.one(sql, {id});
 }
 
-productService.update = (id, name, description, price, stock) => {
+productService.update = (id, name, description, price, stock, image) => {
     const sql = `
     UPDATE products
     SET
@@ -25,10 +26,11 @@ productService.update = (id, name, description, price, stock) => {
         token=$[token],
         description=$[description],
         price=$[price],
-        stock=$[stock]
+        stock=$[stock],
+        image=$[image]
     WHERE
         id=$[id]`;
-    return db.one(sql, {id, name, description, price, stock});
+    return db.one(sql, {id, name, description, price, stock, image});
 }
 
 productService.delete = (id) => {

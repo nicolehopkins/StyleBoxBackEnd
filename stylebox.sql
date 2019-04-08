@@ -6,7 +6,7 @@ CREATE DATABASE stylebox;
 CREATE TABLE customers (
   "id" SERIAL PRIMARY KEY,
   "email" VARCHAR UNIQUE NOT NULL,
-  "password" VARCHAR UNIQUE NOT NULL,
+  "password" VARCHAR NOT NULL,
   "token" VARCHAR UNIQUE NOT NULL,
   "shipping_address" VARCHAR,
   "billing_address" VARCHAR,

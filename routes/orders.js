@@ -3,7 +3,7 @@ const orderRouter = express.Router();
 const orderService = require('../services/orders');
 
 // CREATE
-orderRouter.post('/orders', (req, res, next) => {
+orderRouter.post('/', (req, res, next) => {
     const {id, customer_id, product_id, dateOrdered, dateShipped} = req.params;
 
     orderService.create(id, customer_id, product_id, dateOrdered, dateShipped)
@@ -16,7 +16,7 @@ orderRouter.post('/orders', (req, res, next) => {
 })
 
 // GET
-orderRouter.get('/orders/:id', (req, res, next) => {
+orderRouter.get('/:id', (req, res, next) => {
     const {id} = req.params;
 
     orderService.read(id)
@@ -29,7 +29,7 @@ orderRouter.get('/orders/:id', (req, res, next) => {
 })
 
 // UPDATE
-orderRouter.put('/orders/:id', (req, res, next) => {
+orderRouter.put('/:id', (req, res, next) => {
     const {id} = req.params;
 
     orderService.update(id, customer_id, product_id, dateOrdered, dateShipped)
@@ -42,7 +42,7 @@ orderRouter.put('/orders/:id', (req, res, next) => {
 })
 
 // DELETE
-orderRouter.get('/orders/:id', (req, res, next) => {
+orderRouter.get('/:id', (req, res, next) => {
     const {id} = req.params;
 
     orderService.delete(id)

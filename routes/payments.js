@@ -3,7 +3,7 @@ const paymentRouter = express.Router();
 const paymentService = require('../services/payments');
 
 // CREATE
-paymentRouter.post('/payment', (req, res, next) => {
+paymentRouter.post('/', (req, res, next) => {
     const {id, date, customer_id, order_id, isPaid} = req.params;
 
     paymentService.create(id, date, customer_id, order_id, isPaid)

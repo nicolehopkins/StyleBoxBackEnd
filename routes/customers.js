@@ -35,7 +35,7 @@ customerRouter.put('/:id', (req, res, next) => {
 
     customerService.update(id, email, password, token)
         .then(data => {
-            res.json({success: `Updated customer with email ${email} with ID ${id}`});
+            res.json({success: `Updated customer with email ${email} with ID ${data.id}`});
         })
         .catch(err => {
             next(err);
@@ -48,7 +48,7 @@ customerRouter.get('/:id', (req, res, next) => {
 
     customerService.delete(id)
         .then(data => {
-            res.json({success: `Deleted customer with email ${email} with ID ${id}`});
+            res.json({success: `Deleted customer with ID ${data.id}`});
         })
         .catch(err => {
             next(err);
