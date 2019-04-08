@@ -19,7 +19,7 @@ customerRouter.post('/', (req, res, next) => {
 customerRouter.get('/:id', (req, res, next) => {
     const {id} = req.params;
 
-     customerService.read(id)
+     customerService.read(id) 
         .then(data => {
             console.log('d', data)
             res.json(data);
@@ -33,7 +33,7 @@ customerRouter.get('/:id', (req, res, next) => {
 customerRouter.put('/:id', (req, res, next) => {
     const {id} = req.params;
 
-    customerService.update(id, email, password, token)
+    customerService.update(email, password, token, shipping_address, billing_address, cedit_card_number)
         .then(data => {
             res.json({success: `Updated customer with email ${email} with ID ${data.id}`});
         })

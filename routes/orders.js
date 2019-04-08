@@ -4,11 +4,11 @@ const orderService = require('../services/orders');
 
 // CREATE
 orderRouter.post('/', (req, res, next) => {
-    const {id, customer_id, product_id, dateOrdered, dateShipped} = req.params;
+    const {customer_id, product_id, dateOrdered, dateShipped} = req.body;
 
-    orderService.create(id, customer_id, product_id, dateOrdered, dateShipped)
+    orderService.create(customer_id, product_id, dateOrdered, dateShipped)
         .then(data => {
-            res.json({success: `New order with ${email} created with ID ${id}`});
+            res.json({success: `New order created with order number ${data.id}`});
         })
         .catch(err => {
             next(err);
@@ -32,9 +32,9 @@ orderRouter.get('/:id', (req, res, next) => {
 orderRouter.put('/:id', (req, res, next) => {
     const {id} = req.params;
 
-    orderService.update(id, customer_id, product_id, dateOrdered, dateShipped)
+    orderService.update(customer_id, product_id, dateOrdered, dateShipped)
         .then(data => {
-            res.json({success: `Updated order for ${email} with OrderID ${id}`});
+            res.json({success: `Updated order number ${data.id}`});
         })
         .catch(err => {
             next(err);
@@ -47,7 +47,7 @@ orderRouter.get('/:id', (req, res, next) => {
 
     orderService.delete(id)
         .then(data => {
-            res.json({success: `Deleted order with email ${email} with OrderID ${id}`});
+            res.json({success: `Deleted order number ${data.id}`});
         })
         .catch(err => {
             next(err);

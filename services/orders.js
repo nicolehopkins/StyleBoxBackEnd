@@ -1,10 +1,11 @@
 const {db} = require('./dbConnect');
 const orderService = {};
 
-orderService.create = (id, customer_id, product_id, amount, date_ordered, date_shipped) => {
+orderService.create = (customer_id, product_id, amount, date_ordered, date_shipped=null) => {
     const sql = `
     INSERT INTO orders (customer_id, product_id, amount, date_ordered, date_shipped) 
-    VALUES ($[customer_id], $[product_id], $[amount], $[date_ordered], $[date_shipped])`;
+    VALUES ($[customer_id], $[product_id], $[amount], $[date_ordered], $[date_shipped])
+    RETURNING id`;
     return db.one(sql, {customer_id, product_id, amount, date_ordered, date_shipped});
 }
 
@@ -16,7 +17,7 @@ orderService.read = (id) => {
     return db.one(sql, {id});
 }
 
-orderService.update = (id, customer_id, product_id, amount, date_ordered, date_shipped) => {
+orderService.update = (customer_id, product_id, amount, date_ordered, date_shipped=null) => {
     const sql = `
     UPDATE orders
     SET
