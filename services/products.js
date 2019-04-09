@@ -13,7 +13,11 @@ productService.read = (id) => {
     const sql = `
     SELECT * 
     FROM products
-    WHERE id = $[id]`;
+    LIMIT = $[limit]
+    OFFSET = $[OFFSET]
+    WHERE id = $[id]
+    [ ORDER BY id [ASC | DESC] [, sort_expression2 [ASC | DESC] ...] ]
+    [ LIMIT { number | ALL } ] [ OFFSET number ]`;
     return db.one(sql, {id});
 }
 
