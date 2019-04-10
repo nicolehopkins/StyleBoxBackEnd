@@ -9,16 +9,11 @@ productService.create = (name, description, price, stock, image) => {
     return db.one(sql, {name, description, price, stock, image});
 }
 
-productService.read = (id) => {
+productService.read = () => {
     const sql = `
     SELECT * 
-    FROM products
-    LIMIT = $[limit]
-    OFFSET = $[OFFSET]
-    WHERE id = $[id]
-    [ ORDER BY id [ASC | DESC] [, sort_expression2 [ASC | DESC] ...] ]
-    [ LIMIT { number | ALL } ] [ OFFSET number ]`;
-    return db.one(sql, {id});
+    FROM products`;
+    return db.any(sql);
 }
 
 productService.update = (id, name, description, price, stock, image) => {

@@ -16,10 +16,8 @@ productRouter.post('/', (req, res, next) => {
 })
 
 // GET
-productRouter.get('/:id', (req, res, next) => {
-    const {id} = req.params;
-
-    productService.read(id)
+productRouter.get('/', (req, res, next) => {
+    productService.read()
         .then(data => {
             res.json(data);
         })
@@ -42,7 +40,7 @@ productRouter.put('/:id', (req, res, next) => {
 })
 
 // DELETE
-productRouter.get('/:id', (req, res, next) => {
+productRouter.delete('/:id', (req, res, next) => {
     const {id} = req.params;
 
     productService.delete(id)
