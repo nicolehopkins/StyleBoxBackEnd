@@ -16,13 +16,13 @@ productService.read = () => {
     return db.any(sql);
 }
 
-productService.read = (id) => {
-    const sql = `
-    SELECT * 
-    FROM products
-    WHERE id=$[id]`;
-    return db.any(sql, {id});
-}
+// productService.read = (id) => {
+//     const sql = `
+//     SELECT * 
+//     FROM products
+//     WHERE id=$[id]`;
+//     return db.any(sql, {id});
+// }
 
 productService.update = (id, name, description, price, stock, image) => {
     const sql = `

@@ -27,17 +27,17 @@ productRouter.get('/', (req, res, next) => {
 })
 
 // GET BY ID
-productRouter.get('/:id', (req, res, next) => {
-    const {id} = req.params;
+// productRouter.get('/item/:id', (req, res, next) => {
+//     const {id} = req.params;
 
-    productService.read(id)
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            next(err);
-        })
-})
+//     productService.read(id)
+//         .then(data => {
+//             res.json(data);
+//         })
+//         .catch(err => {
+//             next(err);
+//         })
+// })
 
 // UPDATE
 productRouter.put('/:id', (req, res, next) => {
