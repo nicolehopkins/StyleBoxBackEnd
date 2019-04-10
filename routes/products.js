@@ -15,9 +15,22 @@ productRouter.post('/', (req, res, next) => {
         }) 
 })
 
-// GET
+// GET ALL
 productRouter.get('/', (req, res, next) => {
     productService.read()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+})
+
+// GET BY ID
+productRouter.get('/:id', (req, res, next) => {
+    const {id} = req.params;
+
+    productService.read(id)
         .then(data => {
             res.json(data);
         })
